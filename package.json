@@ -1,0 +1,23 @@
+{
+  "name": "-demo-",
+  "version": "1.0.0",
+  "description": "基于node.js与vue实现一个文件上传集合",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shisanxianshen/-demo-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shisanxianshen/-demo-/issues"
+  },
+  "homepage": "https://github.com/Shisanxianshen/-demo-#readme",
+  "dependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
