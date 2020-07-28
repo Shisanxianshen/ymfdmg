@@ -1,10 +1,12 @@
 {
   "name": "-demo-",
   "version": "1.0.0",
-  "description": "基于node.js与vue实现一个文件上传集合",
+  "description": "test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clientServer": "webpack-dev-server",
+    "server": "node ./serve/serve",
+    "dev": "concurrently \"npm run clientServer\" \"npm run server\""
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,27 @@
   },
   "homepage": "https://github.com/Shisanxianshen/-demo-#readme",
   "dependencies": {
+    "concurrently": "^5.2.0",
+    "element-ui": "^2.13.2",
+    "koa": "^2.13.0",
+    "koa2-cors": "^2.0.6",
+    "vue": "^2.6.11",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "css-loader": "^3.6.0",
+    "file-loader": "^6.0.0",
+    "html-loader": "^1.1.0",
+    "less": "^3.12.2",
+    "less-loader": "^6.2.0",
+    "url-loader": "^4.1.0",
+    "vue-loader": "^15.9.3",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-dev-server": "^3.11.0"
   }
 }
