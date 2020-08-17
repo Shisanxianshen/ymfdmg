@@ -1,5 +1,6 @@
 const path = require("path")
 const VueLoaderPlugin = require("vue-loader/lib/plugin")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: "./src/main.js",
@@ -12,6 +13,7 @@ module.exports = {
     alias: {
       "@": path.resolve(__dirname, "src"),
     },
+    extensions:['.js','.json','.vue'],
   },
   module: {
     rules: [
@@ -58,8 +60,17 @@ module.exports = {
   devServer: {
     contentBase: "public",
     compress: true,
-    port: 8999,
+    port: 3999,
+    disableHostCheck: true,
+    host:'192.168.21.24',
     stats: 'errors-only',//打印日志取消
   },
-  plugins: [new VueLoaderPlugin()],
+  plugins: [
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      title:'dmg的个人网站',
+      template:'public/index.html',
+      favicon	:'public/favicon.ico',
+    })
+  ],
 }

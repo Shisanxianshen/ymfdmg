@@ -10,13 +10,14 @@ function $ajax(config) {
     let xhr = new XMLHttpRequest()
     let query = [],
       data
-    Object.keys(config.data).forEach((item) => {
-      query.push(`${item}=${config.data[item]}`)
-    })
-
+    if (config.data) {
+      Object.keys(config.data).forEach((item) => {
+        query.push(`${item}=${config.data[item]}`)
+      })
+    }
     data = query.join("&")
     if (config.type === "get") {
-      config.url = config.url + "?" + data
+      config.url = config.url + (data ? ("?" + data):'') 
     }
     xhr.open(config.type, config.url, true)
     if (config.type === "post") {
@@ -31,8 +32,8 @@ function $ajax(config) {
     //
     xhr.onreadystatechange = function() {
       if (xhr.status === 200 && xhr.readyState === 4) {
-        res(xhr.responseText)
-      } else if(xhr.status !== 200){
+        res(JSON.parse(xhr.responseText))
+      } else if (xhr.status !== 200) {
         rej(xhr.responseText)
       }
     }

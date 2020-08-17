@@ -119,8 +119,7 @@ a:hover {
 html,
 body {
   height: 100%;
-  overflow-x: hidden;
-  -webkit-appearance:none
+  font-size: 16px;
 }
 .btn-hover{
   opacity: 1;
