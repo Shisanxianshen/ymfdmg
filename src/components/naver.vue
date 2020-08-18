@@ -3,18 +3,53 @@
   <div class="nav">
     <span class="main-l">dmg的个人小站</span>
     <div class="main-r">
-      <span>前端园地</span>
-      <span>博文</span>
-      <span>杂谈</span>
+      <span
+        v-for="(item,index) in pathList"
+        :key="index"
+        @click="$router.push(item.path)"
+      >{{item.name}}</span>
       <span>
-        <i>注册</i>/
-        <i>登录</i>
+        <i @click="handleShow(1)">登录</i>/
+        <i @click="handleShow(2)">注册</i>
       </span>
     </div>
+    <!-- 登录弹窗 -->
+    <el-dialog
+      :visible.sync="showLogin"
+      width="400px"
+      :modal-append-to-body="false"
+      custom-class="dialog-login"
+      :close-on-click-modal="false"
+    >
+      <login :id="id" v-if="showLogin"/>
+    </el-dialog>
   </div>
 </template>
 <script>
-export default {}
+import login from '@/components/login'
+export default {
+  components: {
+    login,
+  },
+  data() {
+    return {
+      pathList: [
+        { name: '首页', path: '/' },
+        { name: '前端园地', path: '/123' },
+        { name: '博文', path: '/' },
+        { name: '杂谈', path: '/' },
+      ],
+      showLogin: false,
+      id:1,
+    }
+  },
+  methods: {
+    handleShow(id){
+      this.id = id
+      this.showLogin = true
+    }
+  },
+}
 </script>
 <style lang="less" scoped>
 .nav {

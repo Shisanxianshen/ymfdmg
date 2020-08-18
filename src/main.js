@@ -6,17 +6,20 @@ import "element-ui/lib/theme-chalk/index.css"
 import request from "@/request"
 import hljs from "highlight.js"
 import "highlight.js/styles/atom-one-light.css"
-
+import router from '@/router'
 Vue.use(ElementUI)
 Vue.prototype.$ajax = request
-// 代码高亮指令
+// 代码块指令
 Vue.directive("highlight", {
-  update: function (el) {
-    hljs.highlightBlock(el.children[0])
+  bind: function (el) {
+    let blocks = el.querySelectorAll('pre code')
+    blocks.forEach(item =>{
+      hljs.highlightBlock(item)
+    })
   },
 })
-
 new Vue({
   el: "#app",
+  router,
   render: (h) => h(App),
 })

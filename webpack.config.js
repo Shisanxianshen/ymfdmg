@@ -62,7 +62,6 @@ module.exports = {
     compress: true,
     port: 3999,
     disableHostCheck: true,
-    host:'192.168.21.24',
     stats: 'errors-only',//打印日志取消
   },
   plugins: [
