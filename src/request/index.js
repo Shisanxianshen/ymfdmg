@@ -4,6 +4,9 @@ data:传参
 header:设置请求头
 success:
 */
+import { Message } from "element-ui";
+const baseUrl =
+  process.env.NODE_ENV === "development" ? "http://192.168.22.39:3011" : ""
 
 function $ajax(config) {
   return new Promise((res, rej) => {
@@ -17,9 +20,14 @@ function $ajax(config) {
     }
     data = query.join("&")
     if (config.type === "get") {
-      config.url = config.url + (data ? ("?" + data):'') 
+      config.url = config.url + (data ? "?" + data : "")
     }
     xhr.open(config.type, config.url, true)
+    // 设置token
+    xhr.setRequestHeader(
+      "Authorization",
+      localStorage.getItem('token') || ''
+    )
     if (config.type === "post") {
       xhr.setRequestHeader(
         "Content-type",
@@ -29,9 +37,14 @@ function $ajax(config) {
     } else {
       xhr.send(null)
     }
-    //
+    // 响应
     xhr.onreadystatechange = function() {
       if (xhr.status === 200 && xhr.readyState === 4) {
+        // 响应拦截配置
+        let data = JSON.parse(xhr.responseText)
+        if(data.msg && config.msg){
+          Message.error(data.msg)
+        }
         res(JSON.parse(xhr.responseText))
       } else if (xhr.status !== 200) {
         rej(xhr.responseText)
@@ -40,20 +53,22 @@ function $ajax(config) {
   })
 }
 
-const post = async function(url, params, header = null) {
+const post = async function(url, params, header = null, msg = true) {
   return $ajax({
     type: "post",
     data: params,
-    url: url,
+    url: baseUrl + url,
     header: header,
+    msg:msg,
   })
 }
-const get = async function(url, params, header = null) {
+const get = async function(url, params, header = null, msg = true) {
   return $ajax({
     type: "get",
     data: params,
-    url: url,
+    url: baseUrl + url,
     header: header,
+    msg:msg,
   })
 }
 export default {

@@ -7,6 +7,7 @@ import request from "@/request"
 import hljs from "highlight.js"
 import "highlight.js/styles/atom-one-light.css"
 import router from '@/router'
+import store from '@/store'
 Vue.use(ElementUI)
 Vue.prototype.$ajax = request
 // 代码块指令
@@ -21,5 +22,6 @@ Vue.directive("highlight", {
 new Vue({
   el: "#app",
   router,
+  store,
   render: (h) => h(App),
 })

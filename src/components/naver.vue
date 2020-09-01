@@ -8,9 +8,12 @@
         :key="index"
         @click="$router.push(item.path)"
       >{{item.name}}</span>
-      <span>
+      <span v-if="!Object.keys(info).length">
         <i @click="handleShow(1)">登录</i>/
         <i @click="handleShow(2)">注册</i>
+      </span>
+      <span v-else class="info">
+        <i>{{info.name}}</i>/<i @click="loginOut">退出</i>      
       </span>
     </div>
     <!-- 登录弹窗 -->
@@ -40,13 +43,28 @@ export default {
         { name: '杂谈', path: '/' },
       ],
       showLogin: false,
-      id:1,
+      id: 1,
     }
   },
+  computed: {
+    info(){
+      if(Object.keys(this.$store.state.info).length){
+        this.showLogin = false
+      }
+      return this.$store.state.info
+    }
+  },
+  created() {
+    this.$store.dispatch('getUserInfo')
+  },
   methods: {
-    handleShow(id){
+    handleShow(id) {
       this.id = id
       this.showLogin = true
+    },
+    loginOut(){
+      localStorage.removeItem('token')
+      this.$store.commit('deleInfo')
     }
   },
 }
@@ -107,6 +125,10 @@ export default {
           color: skyblue;
         }
       }
+    }
+    .info{
+      color: #fff;
+      font-size: 16px;
     }
   }
 }
