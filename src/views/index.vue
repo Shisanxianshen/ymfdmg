@@ -37,10 +37,16 @@
         </li>
       </ul>
     </div>
+    <!-- 评论区 --> 
+    <Discuss />
   </div>
 </template>
 <script>
+import Discuss from '@/components/discuss'
 export default {
+  components:{
+    Discuss
+  },
   data() {
     return {
       

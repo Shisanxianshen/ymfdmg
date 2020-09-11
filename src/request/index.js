@@ -6,7 +6,7 @@ success:
 */
 import { Message } from "element-ui";
 const baseUrl =
-  process.env.NODE_ENV === "development" ? "http://192.168.22.39:3011" : ""
+  process.env.NODE_ENV === "development" ? "http://192.168.22.39:3011" : "http://39.106.174.56:3011"
 
 function $ajax(config) {
   return new Promise((res, rej) => {

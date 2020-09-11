@@ -3,6 +3,7 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  devtool: false,
   entry: "./src/main.js",
   output: {
     filename: "bundle.js",

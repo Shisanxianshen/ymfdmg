@@ -13,7 +13,8 @@
         <i @click="handleShow(2)">注册</i>
       </span>
       <span v-else class="info">
-        <i>{{info.name}}</i>/<i @click="loginOut">退出</i>      
+        <i>{{info.name}}</i>/
+        <i @click="loginOut">退出</i>
       </span>
     </div>
     <!-- 登录弹窗 -->
@@ -24,7 +25,7 @@
       custom-class="dialog-login"
       :close-on-click-modal="false"
     >
-      <login :id="id" v-if="showLogin"/>
+      <login :id="id" v-if="showLogin" />
     </el-dialog>
   </div>
 </template>
@@ -47,12 +48,12 @@ export default {
     }
   },
   computed: {
-    info(){
-      if(Object.keys(this.$store.state.info).length){
+    info() {
+      if (Object.keys(this.$store.state.info).length) {
         this.showLogin = false
       }
       return this.$store.state.info
-    }
+    },
   },
   created() {
     this.$store.dispatch('getUserInfo')
@@ -62,10 +63,10 @@ export default {
       this.id = id
       this.showLogin = true
     },
-    loginOut(){
+    loginOut() {
       localStorage.removeItem('token')
       this.$store.commit('deleInfo')
-    }
+    },
   },
 }
 </script>
@@ -126,9 +127,23 @@ export default {
         }
       }
     }
-    .info{
+    .info {
       color: #fff;
       font-size: 16px;
+      display: flex;
+      i {
+        &:first-child {
+          display: inline-block;
+          width: 80px;
+          text-align: right;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
     }
   }
 }

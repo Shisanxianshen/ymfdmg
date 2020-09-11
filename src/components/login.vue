@@ -8,7 +8,7 @@
     <!-- 登录 -->
     <div class="login" v-if="show === 1">
       <input type="text" placeholder="请输入邮箱号" v-model="email">
-      <input type="text" placeholder="请输入密码" v-model="password">
+      <input type="password" placeholder="请输入密码" v-model="password">
       <button class="btn-hover" @click="login_fn">登录</button>
     </div>
     <!-- 注册 -->
@@ -20,8 +20,8 @@
       </div>
       <input type="text" placeholder="请输入邮箱验证码" v-model="code">
       <input type="text" placeholder="请输入昵称" v-model="name">
-      <input type="text" placeholder="请输入密码" v-model="password_r">
-      <input type="text" placeholder="请确认密码" v-model="confirmPassword_r">
+      <input type="password" placeholder="请输入密码" v-model="password_r">
+      <input type="password" placeholder="请确认密码" v-model="confirmPassword_r">
       <button class="btn-hover" @click="register_fn">注册</button>
     </div>
   </div>
@@ -51,7 +51,7 @@ export default {
   },
   mounted() {
     this.show = this.id
-    this.$emit('update:showLogin',false)
+    this.$emit('update:showLogin',false)  
   },
   methods: {
     // 登录
@@ -104,14 +104,14 @@ export default {
     // 发送邮件
     async sendEmail(){
       if(this.email_r === ''){
-        this.$message.error('请输入正确的邮箱') 
+        this.$message.error('邮箱不能为空') 
         return
       }
       if(!reg.MAIL_CHECK(this.email_r)){
         this.$message.error('请输入正确的邮箱') 
         return
       }
-      const data = await this.$ajax.post('/user/getCode',{email:this.email_r,})
+      const data = await this.$ajax.post('/user/getCode',{email:this.email_r})
       if(data.code === 0){
         this.timer = setInterval(()=>{
           this.cur--
