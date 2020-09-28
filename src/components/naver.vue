@@ -85,6 +85,7 @@ export default {
   font-size: 20px;
   background: #2b3a42;
   color: #999;
+  z-index: 1;
   .main-l {
     width: 300px;
     font-weight: bold;

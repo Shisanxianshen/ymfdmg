@@ -2,8 +2,12 @@
 <template>
   <div class="discuss">
     评论：
-    
-    <!-- 发表评论 --> 
+    <div class="list">
+      <listItem/>
+      <!-- child -->
+      <listItem :type="'child'"/>
+    </div>
+    <!-- 发表评论 -->
     发表评论：
     <quillEditor
       v-model="content"
@@ -23,9 +27,11 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import { quillEditor } from 'vue-quill-editor'
+import listItem from './talkList/listItem'
 export default {
   components: {
     quillEditor,
+    listItem,
   },
   data() {
     return {
@@ -36,6 +42,7 @@ export default {
         theme: 'snow',
       },
       content: ``,
+      inpShow: false, //子评论显示框
     }
   },
   computed: {
@@ -53,37 +60,41 @@ export default {
     onEditorReady(quill) {
       console.log('editor ready!')
     },
-    removeDiscuss(){
+    removeDiscuss() {
       this.content = ''
     },
-    sendDiscuss(){
-      
-    }
+    sendDiscuss() {},
   },
 }
 </script>
 <style lang="less" scoped>
 // 文本编辑器样式设置
-/deep/.ql-toolbar{
-  .ql-formats{
-    &:nth-child(n+7){
+/deep/.ql-toolbar {
+  .ql-formats {
+    &:nth-child(n + 7) {
       display: none;
     }
-    button{
+    button {
       margin-top: 0;
     }
   }
 }
-/deep/.ql-container{
-  .ql-editor{
+/deep/.ql-container {
+  .ql-editor {
     min-height: 200px;
   }
 }
-.suport{
+.suport {
   text-align: right;
-  button{
+  button {
     height: 40px;
     padding: 0 20px;
   }
+}
+.list {
+  box-sizing: border-box;
+  padding: 10px 20px;
+  border: 1px solid #f0f2f7;
+  font-size: 16px;
 }
 </style>
