@@ -2,17 +2,18 @@
   <div :class="{'parent':type === 'parent','child':type === 'child'}">
     <div class="head">
       <img src="@/static/img/head.jpg" alt />
-      捉鱼后摸鱼
+      <span style="color:#666;">{{data.name}}{{(type === 'child' && data.reviewId !== data.parentId) ? ` @${reviewName(data.reviewId)} ` : ''}}</span>
+      <span class="time">{{changeTime(data.date)}}</span>
     </div>
     <div class="contxt">
-      我有一个愿望，让中国所有不遵守劳动法的公司老板全部挂路灯上
+      <p class="text" style="font-size:14px;" v-html="data.content"></p>
       <div class="con-footer" :class="{'showStatus':inpShow}">
         <i class="el-icon-chat-square"></i>
         <span @click="inpShow = !inpShow">{{inpShow ? '取消回复':'回复'}}</span>
         <div class="inp-w" v-if="inpShow">
           <div class="input" contenteditable="true" @blur="handleText" id="inp">
           </div>
-          <button>发布</button>
+          <button @click="savediscuss(data.commentId)">发布</button>
         </div>
       </div>
     </div>
@@ -25,7 +26,12 @@ export default {
       type: String,
       default: 'parent',
     },
+    data:{
+      type:Object,
+    },
+    name:Array,
   },
+  inject:['discussFrom'],
   data() {
     return {
       inpShow: false,
@@ -35,6 +41,29 @@ export default {
   methods: {
     handleText(e){
       this.text = e.target.innerText
+    },
+    // 回复者名字
+    reviewName(id){
+      for(let i of this.name){
+        if(i.commentId === id){
+          return i.name
+        }  
+      }
+    },
+    async savediscuss (id) {
+      let params = {
+        from:this.discussFrom,
+        content:this.text,
+        parentId:this.type === 'parent' ? id:this.data.parentId,
+        reviewId:id,
+      }
+      this.$ajax.post('/saveDiscuss',params).then(res => {
+        if(res.code === 0){
+          this.text = ''
+          this.inpShow = false
+          this.$emit('check')
+        }
+      })
     }
   },
 }
@@ -45,6 +74,11 @@ export default {
   align-items: center;
   img {
     margin-right: 10px;
+  }
+  .time{
+    flex: auto;
+    text-align: right;
+    color: #666;
   }
 }
 .parent,
@@ -76,6 +110,9 @@ export default {
         margin-left: 5px;
       }
     }
+    .text{
+      max-width: 900px;
+    }
   }
 }
 .child {
@@ -91,6 +128,8 @@ export default {
     outline: none;
     padding: 5px;
     color: #333;
+    min-height: 24px;
+    font-size: 14px;
   }
   button {
     position: absolute;

@@ -4,8 +4,8 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --env.NODE_ENV=development",
-    "build": "rimraf dist && webpack --env.NODE_ENV=production"
+    "dev": "webpack-dev-server --env.NODE_ENV=dev --env.static=0",
+    "build": "rimraf dist && webpack --env.NODE_ENV=product --env.static=1"
   },
   "repository": {
     "type": "git",

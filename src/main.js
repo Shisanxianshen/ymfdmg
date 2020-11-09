@@ -19,7 +19,10 @@ Vue.directive("highlight", {
     })
   },
 })
-sss
+Vue.prototype.changeTime = function(str){
+  let count = new Date(str).getTime()
+  return new Date(count).toLocaleString()
+}
 new Vue({
   el: "#app",
   router,

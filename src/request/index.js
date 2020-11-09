@@ -23,6 +23,8 @@ function $ajax(config) {
       config.url = config.url + (data ? "?" + data : "")
     }
     xhr.open(config.type, config.url, true)
+    //允许携带cookie  
+    xhr.withCredentials = true
     // 设置token
     xhr.setRequestHeader(
       "Authorization",
