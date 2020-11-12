@@ -26,9 +26,6 @@
       @blur="onEditorBlur($event)"
       @ready="onEditorReady($event)"
     ></quillEditor>
-    <el-input v-model="input" placeholder="请输入内容">
-      <i slot="suffix" class="el-input__icon el-icon-date"></i>
-    </el-input>
     <div class="suport">
       <button class="btn-hover" @click="removeDiscuss">撤销</button>
       <button class="btn-hover" @click="sendDiscuss">发表评论</button>
@@ -57,7 +54,6 @@ export default {
       },
       content: '',
       discussList: [],
-      input:'',
     }
   },
   computed: {
@@ -88,9 +84,6 @@ export default {
   },
   mounted() {
     this.getDiscuss()
-    document.getElementById('abc').onclick = function(){
-      console.log(this)
-    }
   },
   methods: {
     onEditorReady(quill) {
@@ -110,7 +103,7 @@ export default {
       }
       let params = {
         from: this.discussFrom,
-        content: this.content,
+        content: encodeURIComponent(this.content.replace(/'/g,'"')), //对编辑器中所有的单引号做双引号处理
         parentId: 0,
         reviewId: 0,
       }

@@ -1,7 +1,7 @@
 // nav
 <template>
   <div class="nav">
-    <span class="main-l">dmg的个人小站</span>
+    <span class="main-l">dmg的菜园子</span>
     <div class="main-r">
       <span
         v-for="(item,index) in pathList"

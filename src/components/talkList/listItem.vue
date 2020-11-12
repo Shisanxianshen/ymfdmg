@@ -1,18 +1,33 @@
 <template>
-  <div :class="{'parent':type === 'parent','child':type === 'child'}">
+  <div :class="{ parent: type === 'parent', child: type === 'child' }">
     <div class="head">
       <img src="@/static/img/head.jpg" alt />
-      <span style="color:#666;">{{data.name}}{{(type === 'child' && data.reviewId !== data.parentId) ? ` @${reviewName(data.reviewId)} ` : ''}}</span>
-      <span class="time">{{changeTime(data.date)}}</span>
+      <span style="color: #666"
+        >{{ data.name
+        }}{{
+          type === 'child' &&
+          data.reviewId !== data.parentId &&
+          reviewName(data.reviewId) !== ''
+            ? ` @${reviewName(data.reviewId)} `
+            : ''
+        }}</span
+      >
+      <span class="time">{{ changeTime(data.date) }}</span>
     </div>
     <div class="contxt">
-      <p class="text" style="font-size:14px;" v-html="data.content"></p>
-      <div class="con-footer" :class="{'showStatus':inpShow}">
+      <p class="text" style="font-size: 14px" v-html="data.content" v-code></p>
+      <div class="con-footer" :class="{ showStatus: inpShow }">
         <i class="el-icon-chat-square"></i>
-        <span @click="inpShow = !inpShow">{{inpShow ? '取消回复':'回复'}}</span>
+        <span @click="inpShow = !inpShow">{{
+          inpShow ? '取消回复' : '回复'
+        }}</span>
         <div class="inp-w" v-if="inpShow">
-          <div class="input" contenteditable="true" @blur="handleText" id="inp">
-          </div>
+          <div
+            class="input"
+            contenteditable="true"
+            @blur="handleText"
+            id="inp"
+          ></div>
           <button @click="savediscuss(data.commentId)">发布</button>
         </div>
       </div>
@@ -20,18 +35,22 @@
   </div>
 </template>
 <script>
+import codeBox from '@/components/codeBox'
 export default {
+  components: {
+    codeBox,
+  },
   props: {
     type: {
       type: String,
       default: 'parent',
     },
-    data:{
-      type:Object,
+    data: {
+      type: Object,
     },
-    name:Array,
+    name: Array,
   },
-  inject:['discussFrom'],
+  inject: ['discussFrom'],
   data() {
     return {
       inpShow: false,
@@ -39,32 +58,33 @@ export default {
     }
   },
   methods: {
-    handleText(e){
+    handleText(e) {
       this.text = e.target.innerText
     },
     // 回复者名字
-    reviewName(id){
-      for(let i of this.name){
-        if(i.commentId === id){
+    reviewName(id) {
+      for (let i of this.name) {
+        if (i.commentId === id) {
           return i.name
-        }  
+        }
       }
+      return ''
     },
-    async savediscuss (id) {
+    async savediscuss(id) {
       let params = {
-        from:this.discussFrom,
-        content:this.text,
-        parentId:this.type === 'parent' ? id:this.data.parentId,
-        reviewId:id,
+        from: this.discussFrom,
+        content: this.text,
+        parentId: this.type === 'parent' ? id : this.data.parentId,
+        reviewId: id,
       }
-      this.$ajax.post('/saveDiscuss',params).then(res => {
-        if(res.code === 0){
+      this.$ajax.post('/saveDiscuss', params).then((res) => {
+        if (res.code === 0) {
           this.text = ''
           this.inpShow = false
           this.$emit('check')
         }
       })
-    }
+    },
   },
 }
 </script>
@@ -75,7 +95,7 @@ export default {
   img {
     margin-right: 10px;
   }
-  .time{
+  .time {
     flex: auto;
     text-align: right;
     color: #666;
@@ -110,7 +130,7 @@ export default {
         margin-left: 5px;
       }
     }
-    .text{
+    .text {
       max-width: 900px;
     }
   }

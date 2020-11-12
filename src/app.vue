@@ -34,18 +34,30 @@ export default {
   }
   pre {
     max-width: 800px;
-    code {
-      background: #e9ecef;
-      border-radius: 5px;
-      white-space: pre-line;
-      &::-webkit-scrollbar {
-        border-radius: 3px;
-        height: 5px;
+    background: #333;
+    padding: 20px;
+    border-radius: 6px;
+    color: #fff;
+    overflow-x: auto; 
+    position: relative;
+    .copy{
+      color: #666;
+      right: 5px;
+      top: 5px;
+      position: absolute;
+      cursor: pointer;
+      user-select:none;
+      &:hover{
+        color: skyblue;
       }
-      &::-webkit-scrollbar-thumb {
-        border-radius: 3px;
-        background: #999;
-      }
+    }
+    &::-webkit-scrollbar {
+      border-radius: 3px;
+      height: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+      background: #999;
     }
   }
 }
@@ -53,9 +65,9 @@ export default {
   padding: 0 !important;
 }
 .el-dialog__body {
-  padding: 15px 20px 25px!important;
+  padding: 15px 20px 25px !important;
 }
-.el-dialog__headerbtn{
+.el-dialog__headerbtn {
   position: absolute;
   top: 0;
   right: 0;
@@ -77,7 +89,7 @@ input {
     border-color: #666;
   }
 }
-button{
+button {
   background: #3eaf7c;
   border: 0;
   outline: none;

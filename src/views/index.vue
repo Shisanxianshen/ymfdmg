@@ -8,7 +8,7 @@
     </p>
     <div class="list">
       <h2>推荐内容</h2>
-      <ul v-highlight>
+      <ul>
         <li>
           暂时没啥好推荐的...
         </li>
@@ -34,7 +34,7 @@
 import Discuss from '@/components/discuss'
 export default {
   components:{
-    Discuss
+    Discuss,
   },
   provide:{
     'discussFrom':'index',
