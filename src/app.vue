@@ -59,6 +59,9 @@ export default {
       border-radius: 3px;
       background: #999;
     }
+    &::selection{
+      background: #999;
+    }
   }
 }
 .el-dialog__header {
@@ -98,5 +101,10 @@ button {
   font-size: 18px;
   margin-top: 20px;
   cursor: pointer;
+}
+input{
+  &:focus{
+    border-color: #999 !important;
+  }
 }
 </style>

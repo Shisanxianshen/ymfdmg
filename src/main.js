@@ -1,3 +1,6 @@
+/*
+ * @des: 
+ */
 import Vue from "vue"
 import App from "./app.vue"
 import "@/static/css/reset.css"
@@ -7,7 +10,10 @@ import request from "@/request"
 import "highlight.js/styles/atom-one-light.css"
 import router from "@/router"
 import store from "@/store"
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 Vue.use(ElementUI)
+Vue.use(mavonEditor)
 Vue.prototype.$ajax = request
 // 代码块指令
 let vm = new Vue({

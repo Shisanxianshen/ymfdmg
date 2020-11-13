@@ -1,3 +1,6 @@
+/*
+ * @des: 
+ */
 const path = require("path")
 const webpack = require("webpack")
 const VueLoaderPlugin = require("vue-loader/lib/plugin")
@@ -66,6 +69,9 @@ module.exports = (env) => {
       port: 3999,
       disableHostCheck: true,
       stats: "errors-only", //打印日志取消
+      historyApiFallback: {
+        index: '/index.html'  //配置路由history模式
+      }
     },
     plugins: [
       new VueLoaderPlugin(),

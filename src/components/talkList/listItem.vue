@@ -35,11 +35,7 @@
   </div>
 </template>
 <script>
-import codeBox from '@/components/codeBox'
 export default {
-  components: {
-    codeBox,
-  },
   props: {
     type: {
       type: String,
