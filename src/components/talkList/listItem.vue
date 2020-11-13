@@ -21,7 +21,7 @@
         <span @click="inpShow = !inpShow">{{
           inpShow ? '取消回复' : '回复'
         }}</span>
-        <div class="inp-w" v-if="inpShow">
+        <div class="inp-w" v-if="inpShow" :class="{'show-ani':inpShow}">
           <div
             class="input"
             contenteditable="true"
@@ -158,6 +158,29 @@ export default {
     font-size: 14px;
     bottom: 0;
     left: 620px;
+  }
+}
+.show-ani{
+  .input{
+    animation: inp linear .1s;
+  }
+  button{
+    animation: btn linear .1s;
+  }
+}
+@keyframes inp {
+  from{width: 640px;}
+  to{width: 600px;}
+}
+@keyframes btn {
+  0%{
+    transform: scale(0);
+  }
+  50%{
+    transform: scale(.5);
+  }
+  100%{
+    transform: scale(1);
   }
 }
 </style>

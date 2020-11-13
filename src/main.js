@@ -10,7 +10,7 @@ import store from "@/store"
 Vue.use(ElementUI)
 Vue.prototype.$ajax = request
 // 代码块指令
- let vm = new Vue({
+let vm = new Vue({
   el: "#app",
   router,
   store,
@@ -20,23 +20,25 @@ Vue.prototype.$ajax = request
 Vue.directive("code", {
   bind: function(el) {
     let codebox = el.querySelector("pre")
-    let copybtn = document.createElement("span")
-    copybtn.innerText = "复制代码"
-    copybtn.classList = "copy"
-    copybtn.onclick = function() {
-      let selection = window.getSelection()
-      selection.removeAllRanges()
-      let range = document.createRange()
-      range.selectNodeContents(codebox) // 需要选中的dom节点
-      selection.addRange(range)
-      document.execCommand("Copy")
-      vm.$message.success('复制成功')
+    // 存在pre标签则创建代码块
+    if (codebox) {
+      let copybtn = document.createElement("span")
+      copybtn.innerText = "复制代码"
+      copybtn.classList = "copy"
+      copybtn.onclick = function() {
+        let selection = window.getSelection()
+        selection.removeAllRanges()
+        let range = document.createRange()
+        range.selectNodeContents(codebox) // 需要选中的dom节点
+        selection.addRange(range)
+        document.execCommand("Copy")
+        vm.$message.success("复制成功")
+      }
+      codebox.appendChild(copybtn)
     }
-    codebox.appendChild(copybtn)
   },
 })
 Vue.prototype.changeTime = function(str) {
   let count = new Date(str).getTime()
   return new Date(count).toLocaleString()
 }
-
