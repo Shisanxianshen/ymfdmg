@@ -10,7 +10,7 @@ module.exports = (env) => {
     devtool: env.NODE_ENV === "dev" ? "source-map" : "eval",
     entry: "./src/main.js",
     output: {
-      filename: "bundle.js",
+      filename: "[chunkhash].bundle.js",
       path: path.resolve(__dirname, "dist"),
     },
     // 配置
