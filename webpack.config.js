@@ -1,5 +1,5 @@
 /*
- * @des: 
+ * @des:
  */
 const path = require("path")
 const webpack = require("webpack")
@@ -70,13 +70,20 @@ module.exports = (env) => {
       disableHostCheck: true,
       stats: "errors-only", //打印日志取消
       historyApiFallback: {
-        index: '/index.html'  //配置路由history模式
-      }
+        index: "/index.html", //配置路由history模式
+      },
+      proxy: {
+        "/api": {
+          target: "http://192.168.22.39:3011",
+          pathRewrite: {"^/api" : ""},
+          changeOrigin:true,
+        },
+      },
     },
     plugins: [
       new VueLoaderPlugin(),
       new webpack.DefinePlugin({
-        env:JSON.stringify(env)
+        env: JSON.stringify(env),
       }),
       new HtmlWebpackPlugin({
         title: "dmg的个人网站",

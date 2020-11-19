@@ -5,9 +5,8 @@ header:设置请求头
 success:
 */
 import { Message } from "element-ui";
-const baseUrl =
-  process.env.NODE_ENV === "development" ? "http://192.168.22.39:3011" : "http://39.106.174.56:3011"
-
+// const baseUrl = process.env.NODE_ENV === "development" ? "http://192.168.22.39:3011" : "https://39.106.174.56:3011"
+const baseUrl = '/api'
 function $ajax(config) {
   return new Promise((res, rej) => {
     let xhr = new XMLHttpRequest()
