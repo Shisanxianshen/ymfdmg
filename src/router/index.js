@@ -11,7 +11,7 @@ const routes = [
     path: "/editor",
     name: "editor",
     component: () => import("@/views/editor"),
-  },
+  }
 ]
 
 // 路由重写

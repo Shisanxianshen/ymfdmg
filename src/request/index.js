@@ -4,9 +4,9 @@ data:传参
 header:设置请求头
 success:
 */
-import { Message } from "element-ui";
-// const baseUrl = process.env.NODE_ENV === "development" ? "http://192.168.22.39:3011" : "https://39.106.174.56:3011"
-const baseUrl = '/api'
+import { Message } from "element-ui"
+const baseUrl =
+  process.env.NODE_ENV === "development" ? "/api" : "https://39.106.174.56:3011"
 function $ajax(config) {
   return new Promise((res, rej) => {
     let xhr = new XMLHttpRequest()
@@ -22,19 +22,19 @@ function $ajax(config) {
       config.url = config.url + (data ? "?" + data : "")
     }
     xhr.open(config.type, config.url, true)
-    //允许携带cookie  
+    //允许携带cookie
     xhr.withCredentials = true
     // 设置token
-    xhr.setRequestHeader(
-      "Authorization",
-      localStorage.getItem('token') || ''
-    )
+    xhr.setRequestHeader("Authorization", localStorage.getItem("token") || "")
     if (config.type === "post") {
-      xhr.setRequestHeader(
-        "Content-type",
-        `${config.header || "application/x-www-form-urlencoded"}`
-      )
-      xhr.send(data)
+      if (config.header !== "noheader") {
+        xhr.setRequestHeader(
+          "Content-type",
+          `${config.header || "application/x-www-form-urlencoded"}`
+        )
+      }
+      // 处理上传文件
+      config.header === "noheader" ? xhr.send(config.data) : xhr.send(data)
     } else {
       xhr.send(null)
     }
@@ -43,7 +43,8 @@ function $ajax(config) {
       if (xhr.status === 200 && xhr.readyState === 4) {
         // 响应拦截配置
         let data = JSON.parse(xhr.responseText)
-        if(data.msg && config.msg){
+        console.log(data.msg, config.msg)
+        if (data.msg && config.msg) {
           Message.error(data.msg)
         }
         res(JSON.parse(xhr.responseText))
@@ -60,7 +61,7 @@ const post = async function(url, params, header = null, msg = true) {
     data: params,
     url: baseUrl + url,
     header: header,
-    msg:msg,
+    msg: msg,
   })
 }
 const get = async function(url, params, header = null, msg = true) {
@@ -69,7 +70,7 @@ const get = async function(url, params, header = null, msg = true) {
     data: params,
     url: baseUrl + url,
     header: header,
-    msg:msg,
+    msg: msg,
   })
 }
 export default {

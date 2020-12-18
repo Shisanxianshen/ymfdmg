@@ -68,7 +68,7 @@ export default {
       if(data.code === 0){
         this.$message.success('登录成功')
         localStorage.setItem('token',data.token)
-        this.$store.dispatch('getUserInfo')
+        this.$store.dispatch('user/getUserInfo')
       }
     },
     // 注册
@@ -98,7 +98,7 @@ export default {
       if(data.code === 0){
         this.$message.success('注册成功')
         localStorage.setItem('token',data.token)
-        this.$store.dispatch('getUserInfo')
+        this.$store.dispatch('user/getUserInfo')
       }
     },
     // 发送邮件

@@ -38,16 +38,16 @@ export default {
     padding: 20px;
     border-radius: 6px;
     color: #fff;
-    overflow-x: auto; 
+    overflow-x: auto;
     position: relative;
-    .copy{
+    .copy {
       color: #666;
       right: 5px;
       top: 5px;
       position: absolute;
       cursor: pointer;
-      user-select:none;
-      &:hover{
+      user-select: none;
+      &:hover {
         color: skyblue;
       }
     }
@@ -59,7 +59,7 @@ export default {
       border-radius: 3px;
       background: #999;
     }
-    &::selection{
+    &::selection {
       background: #999;
     }
   }
@@ -102,8 +102,8 @@ button {
   margin-top: 20px;
   cursor: pointer;
 }
-input{
-  &:focus{
+input {
+  &:focus {
     border-color: #999 !important;
   }
 }

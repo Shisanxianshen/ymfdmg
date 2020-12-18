@@ -33,6 +33,7 @@
 <script>
 import Discuss from '@/components/discuss'
 export default {
+  name:'index',
   components:{
     Discuss,
   },
@@ -41,11 +42,11 @@ export default {
   },
   data() {
     return {
-      
+      a:123
     }
   },
   created() {
-   
+    console.log(this['a'])
   },
 }
 </script>
