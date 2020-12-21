@@ -5,8 +5,9 @@ header:设置请求头
 success:
 */
 import { Message } from "element-ui"
-const baseUrl =
-  process.env.NODE_ENV === "development" ? "/api" : "https://39.106.174.56:3011"
+// const baseUrl =
+//   process.env.NODE_ENV === "development" ? "/api" : "https://39.106.174.56:3011"
+const baseUrl = '/api'
 function $ajax(config) {
   return new Promise((res, rej) => {
     let xhr = new XMLHttpRequest()
@@ -43,7 +44,6 @@ function $ajax(config) {
       if (xhr.status === 200 && xhr.readyState === 4) {
         // 响应拦截配置
         let data = JSON.parse(xhr.responseText)
-        console.log(data.msg, config.msg)
         if (data.msg && config.msg) {
           Message.error(data.msg)
         }

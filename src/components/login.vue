@@ -67,7 +67,7 @@ export default {
       let data = await this.$ajax.post('/user/login',{email:this.email,password:this.password})
       if(data.code === 0){
         this.$message.success('登录成功')
-        localStorage.setItem('token',data.token)
+        localStorage.setItem('token', data.token)
         this.$store.dispatch('user/getUserInfo')
       }
     },

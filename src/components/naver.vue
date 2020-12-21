@@ -92,7 +92,6 @@ export default {
   },
   created() {
     this.$store.dispatch('user/getUserInfo')
-    console.log(this.$store.state.user.info.id)
   },
   methods: {
     async handleHead(e) {

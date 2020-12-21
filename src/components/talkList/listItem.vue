@@ -1,7 +1,7 @@
 <template>
   <div :class="{ parent: type === 'parent', child: type === 'child' }">
     <div class="head">
-      <img src="@/static/img/head.jpg" alt />
+      <img :src="data.head || defaultImg" alt />
       <span style="color: #666"
         >{{ data.name
         }}{{
@@ -51,6 +51,7 @@ export default {
     return {
       inpShow: false,
       text: '',
+      defaultImg: require('@/static/img/head.jpg')
     }
   },
   methods: {
@@ -90,6 +91,9 @@ export default {
   align-items: center;
   img {
     margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
   }
   .time {
     flex: auto;

@@ -40,14 +40,6 @@ export default {
   provide:{
     'discussFrom':'index',
   },
-  data() {
-    return {
-      a:123
-    }
-  },
-  created() {
-    console.log(this['a'])
-  },
 }
 </script>
 <style lang="less" scoped>
