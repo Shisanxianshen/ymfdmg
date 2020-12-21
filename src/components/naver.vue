@@ -105,6 +105,7 @@ export default {
         )
         if (data.code === 0) {
           this.$message.success('上传成功')
+          this.$store.dispatch('user/getUserInfo')
           this.headSrc = data.headSrc
         }
       }
