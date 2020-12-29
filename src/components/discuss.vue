@@ -18,7 +18,7 @@
       </div>
     </div>
     <!-- 发表评论 -->
-    <div class="tips" id="abc">发表评论：</div>
+    <div class="tips" id="abc">欢迎交流：</div>
     <quillEditor
       v-model="content"
       ref="myQuillEditor"
@@ -164,6 +164,6 @@ export default {
   padding: 20px;
   background: #fefefe;
   border: 1px solid #ccc;
-  color: #666;
+  color: #666
 }
 </style>
