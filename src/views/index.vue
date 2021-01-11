@@ -9,6 +9,9 @@
         <h2>About Me</h2>
         <div class="timeline">
           <el-timeline>
+            <el-timeline-item timestamp="实习经历" placement="top">
+              2019/02-2019/05 深圳欣米文化有限公司担当前端实习生，主要工作是做腾讯游戏外包的活动页面，主要就是使用js，jq，写一些动画效果以及腾讯活动的静态页。
+            </el-timeline-item>
             <el-timeline-item timestamp="2019/06" placement="top">
               毕业于聊城大学，专业是信息与计算科学。本科课程偏向数学，也学习了基础的mysql，数据结构，matlab等课程。
             </el-timeline-item>
@@ -65,6 +68,9 @@ export default {
       }
     }, 80)
   },
+  destroyed() {
+    clearInterval(this.timer)
+  },
 }
 </script>
 <style lang="less" scoped>
@@ -106,6 +112,8 @@ export default {
 .index {
   width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
+  padding-bottom: 40px;
   h2 {
     font-size: 35px;
     font-weight: bold;
