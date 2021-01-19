@@ -1,6 +1,6 @@
 // nav
 <template>
-  <div class="nav">
+  <div class="nav" :class="{visible:visible}">
     <span class="main-l">dmg的菜园子</span>
     <div class="main-r">
       <span
@@ -72,14 +72,15 @@ export default {
     return {
       pathList: [
         { name: '首页', path: '/' },
-        { name: '前端园地', path: '/123' },
-        { name: '博文', path: '/' },
-        { name: '杂谈', path: '/' },
+        { name: '前端园地', path: '/blog' },
+        { name: '面试收集', path: '/' },
+        { name: '闲谈', path: '/' },
       ],
       showLogin: false,
       showImg: false,
       id: 1,
       headSrc: '',
+      visible:true,
     }
   },
   computed: {
@@ -92,22 +93,31 @@ export default {
   },
   created() {
     this.$store.dispatch('user/getUserInfo')
+    document.addEventListener('scroll', () => {
+      if(document.documentElement.scrollTop > 60){
+        this.visible = false
+      }else{
+        this.visible = true
+      }
+    })
   },
   methods: {
     async handleHead(e) {
       if (this.check(e.target.files[0].name, e.target.files[0].size)) {
         const formdata = new FormData()
         formdata.append('file', e.target.files[0])
-        const data = await this.$ajax.post(
-          `/user/setHead/${this.$store.state.user.info.id}`,
-          formdata,
-          'noheader'
-        )
-        if (data.code === 0) {
-          this.$message.success('上传成功')
-          this.$store.dispatch('user/getUserInfo')
-          this.headSrc = data.headSrc
-        }
+        e.target.files[0].arrayBuffer().then(res => {console.log(res)})
+      
+        // const data = await this.$ajax.post(
+        //   `/user/setHead/${this.$store.state.user.info.id}`,
+        //   formdata,
+        //   'noheader'
+        // )
+        // if (data.code === 0) {
+        //   this.$message.success('上传成功')
+        //   this.$store.dispatch('user/getUserInfo')
+        //   this.headSrc = data.headSrc
+        // }
       }
     },
     handleShow(id) {
@@ -148,6 +158,8 @@ export default {
   background: #2b3a42;
   color: #999;
   z-index: 1;
+  transition: all .3s;
+  transform: translateY(-60px);
   .main-l {
     width: 300px;
     font-weight: bold;
@@ -157,6 +169,7 @@ export default {
     display: flex;
     justify-content: flex-end;
     font-size: 18px;
+    overflow: hidden;
     span {
       height: 40px;
       line-height: 40px;
@@ -216,6 +229,9 @@ export default {
       }
     }
   }
+}
+.visible{
+  transform: translateY(0);
 }
 .head-box {
   width: 100px;

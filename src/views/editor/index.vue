@@ -2,7 +2,7 @@
  * @des:编辑器页面 
 -->
 <template>
-  <div>
+  <div style="padding-bottom:20px; ">
     <div class="wrap">
       <h2 class="editor-t">发布文章</h2>
       <!-- 文章标题 -->
@@ -43,28 +43,28 @@ export default {
       title: '',
       modelOptions: [
         {
-          value: 'blog',
-          label: '博文',
-        },
-        {
-          value: 'css',
-          label: 'css园地',
-        },
-        {
-          value: 'js',
-          label: 'js园地',
+          value: 'writeCode',
+          label: '前端手写合集',
         },
         {
           value: 'vue',
-          label: 'vue园地',
+          label: 'vue源码解析',
         },
         {
-          value: 'structure',
-          label: '数据结构',
+          value: 'css',
+          label: '奇妙的css',
         },
         {
-          value: 'leetcode',
-          label: 'leetcode题解',
+          value: 'http',
+          label: 'http基础知识',
+        },
+        {
+          value: 'koa',
+          label: 'koa基础应用',
+        },
+        {
+          value: 'webSet',
+          label: '网站部署相关',
         },
       ],
     }
@@ -85,7 +85,7 @@ export default {
 .wrap {
   width: 1200px;
   margin: 0 auto;
-  padding-top: 20px;
+  padding-top: 60px;
 }
 .el-input {
   width: 800px;
@@ -106,9 +106,9 @@ export default {
   margin-bottom: 20px;
 }
 .submit{
-  width: 200px;
-  height: 60px;
-  font-size: 24px;
+  width: 120px;
+  height: 40px;
+  font-size: 16px;
   display: block;
   margin: 50px auto;
 }

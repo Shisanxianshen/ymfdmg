@@ -3,7 +3,7 @@
   <div class="app">
     <naver />
     <router-view></router-view>
-    <div class="footer">
+    <div class="footer" style="display:none;">
       <a href="http://beian.miit.gov.cn/" target="_blank">鄂ICP备20014730号</a>
     </div>
   </div>
@@ -20,13 +20,12 @@ export default {
 .app {
   min-height: 100vh;
   box-sizing: border-box;
-  padding-top: 60px;
   .footer {
     text-align: center;
     width: 100%;
     font-size: 14px;
-    height: 60px;
-    line-height: 60px;
+    height: 40;
+    line-height: 40px;
     border-top: 1px solid #eaecef;
     a {
       color: #999;
@@ -107,4 +106,12 @@ input {
     border-color: #999 !important;
   }
 }
+</style>
+<style>
+  .m-bgc{
+    background: #3eaf7c;
+  }
+  .m-fc{
+    color: #3eaf7c;
+  }
 </style>
