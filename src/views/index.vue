@@ -75,6 +75,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .banner {
+  width: 100%;
   height: 650px;
   background: url('~@/static/img/banner.jpg') no-repeat center top;
   background-size: cover;

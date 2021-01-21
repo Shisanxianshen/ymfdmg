@@ -8,7 +8,6 @@ export default {
   mutations: {
     getInfo(state, data) {
       state.info = data.data
-      localStorage.setItem('token', data.token)
     },
     deleInfo(state) {
       state.info = {}

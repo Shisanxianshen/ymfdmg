@@ -3,7 +3,7 @@
   <div class="app">
     <naver />
     <router-view></router-view>
-    <div class="footer" style="display:none;">
+    <div class="footer" style="display: none">
       <a href="http://beian.miit.gov.cn/" target="_blank">鄂ICP备20014730号</a>
     </div>
   </div>
@@ -108,10 +108,13 @@ input {
 }
 </style>
 <style>
-  .m-bgc{
-    background: #3eaf7c;
-  }
-  .m-fc{
-    color: #3eaf7c;
-  }
+body {
+  padding: 0 !important;
+}
+.m-bgc {
+  background: #3eaf7c;
+}
+.m-fc {
+  color: #3eaf7c;
+}
 </style>

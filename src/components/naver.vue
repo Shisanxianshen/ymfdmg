@@ -1,26 +1,32 @@
 // nav
 <template>
-  <div class="nav" :class="{visible:visible}">
-    <span class="main-l">dmg的菜园子</span>
-    <div class="main-r">
-      <span
-        v-for="(item, index) in pathList"
-        :key="index"
-        @click="$router.push(item.path)"
-        >{{ item.name }}</span
-      >
-      <span v-if="!Object.keys(info).length">
-        <i @click="handleShow(1)">登录</i>/
-        <i @click="handleShow(2)">注册</i>
-      </span>
-      <span v-else class="info">
-        <i class="headstyle" @click="showImg = true">
-          <img :src="headSrc || info.head" alt="" v-if="headSrc || info.head" />
-          <img src="@/static/img/head.jpg" alt="" v-else />
-          {{ info.name }} </i
-        >/
-        <i @click="loginOut">退出</i>
-      </span>
+  <div>
+    <div class="nav" :class="{ visible: visible }">
+      <span class="main-l">dmg的菜园子</span>
+      <div class="main-r">
+        <span
+          v-for="(item, index) in pathList"
+          :key="index"
+          @click="$router.push(item.path)"
+          >{{ item.name }}</span
+        >
+        <span v-if="!Object.keys(info).length">
+          <i @click="handleShow(1)">登录</i>/
+          <i @click="handleShow(2)">注册</i>
+        </span>
+        <span v-else class="info">
+          <i class="headstyle" @click="showImg = true">
+            <img
+              :src="headSrc || info.head"
+              alt=""
+              v-if="headSrc || info.head"
+            />
+            <img src="@/static/img/head.jpg" alt="" v-else />
+            {{ info.name }} </i
+          >/
+          <i @click="loginOut">退出</i>
+        </span>
+      </div>
     </div>
     <!-- 登录弹窗 -->
     <el-dialog
@@ -47,15 +53,15 @@
           <span>点击上传</span>
         </div>
         <input
-            type="file"
-            name="file"
-            id="head"
-            class="btn"
-            ref="upload"
-            @change="handleHead"
-            multiple="multiple"
-            style="display: none;"
-          />
+          type="file"
+          name="file"
+          id="head"
+          class="btn"
+          ref="upload"
+          @change="handleHead"
+          multiple="multiple"
+          style="display: none"
+        />
       </div>
 
       上传一个你的头像，兄弟！
@@ -80,7 +86,7 @@ export default {
       showImg: false,
       id: 1,
       headSrc: '',
-      visible:true,
+      visible: true,
     }
   },
   computed: {
@@ -106,18 +112,16 @@ export default {
       if (this.check(e.target.files[0].name, e.target.files[0].size)) {
         const formdata = new FormData()
         formdata.append('file', e.target.files[0])
-        e.target.files[0].arrayBuffer().then(res => {console.log(res)})
-      
-        // const data = await this.$ajax.post(
-        //   `/user/setHead/${this.$store.state.user.info.id}`,
-        //   formdata,
-        //   'noheader'
-        // )
-        // if (data.code === 0) {
-        //   this.$message.success('上传成功')
-        //   this.$store.dispatch('user/getUserInfo')
-        //   this.headSrc = data.headSrc
-        // }
+        const data = await this.$ajax.post(
+          `/user/setHead/${this.$store.state.user.info.id}`,
+          formdata,
+          'noheader'
+        )
+        if (data.code === 0) {
+          this.$message.success('上传成功')
+          this.$store.dispatch('user/getUserInfo')
+          this.headSrc = data.headSrc
+        }
       }
     },
     handleShow(id) {
@@ -230,7 +234,7 @@ export default {
     }
   }
 }
-.visible{
+.visible {
   transform: translateY(0);
 }
 .head-box {
