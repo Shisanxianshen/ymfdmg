@@ -40,6 +40,7 @@ Vue.directive("code", {
     }
   },
 })
+
 Vue.prototype.changeTime = function(str) {
   let count = new Date(str).getTime()
   return new Date(count).toLocaleString()

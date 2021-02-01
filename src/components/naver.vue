@@ -8,7 +8,9 @@
           v-for="(item, index) in pathList"
           :key="index"
           @click="$router.push(item.path)"
-          >{{ item.name }}</span
+          :class="{on:item.path === $route.path}"
+          >{{ item.name }}
+          </span
         >
         <span v-if="!Object.keys(info).length">
           <i @click="handleShow(1)">登录</i>/
@@ -79,8 +81,9 @@ export default {
       pathList: [
         { name: '首页', path: '/' },
         { name: '前端园地', path: '/blog' },
-        { name: '面试收集', path: '/' },
-        { name: '闲谈', path: '/' },
+        { name: '面试收集', path: '/question' },
+        { name: '闲谈', path: '/gossip' },
+        { name: '编辑页', path:'/editor'}
       ],
       showLogin: false,
       showImg: false,
@@ -205,6 +208,11 @@ export default {
         &:hover {
           color: skyblue;
         }
+      }
+    }
+    .on{
+      &::after {
+        width: 100%;
       }
     }
     .info {

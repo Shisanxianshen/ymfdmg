@@ -2,9 +2,9 @@
  * @des:编辑器页面 
 -->
 <template>
-  <div style="padding-bottom:20px; ">
+  <div style="padding-bottom: 20px">
     <div class="wrap">
-      <h2 class="editor-t">发布文章</h2>
+      <h2 class="editor-t">我的文章编辑页</h2>
       <!-- 文章标题 -->
       <template>
         <div>
@@ -16,7 +16,7 @@
       <template>
         <div>
           <span class="label">选择文章模块:</span>
-          <el-select v-model="model" placeholder="请选择文章模块">
+          <el-select v-model="moudle" placeholder="请选择文章模块">
             <el-option
               v-for="item in modelOptions"
               :key="item.value"
@@ -28,18 +28,18 @@
         </div>
       </template>
       <!-- 编辑器 -->
-      <mavon-editor v-model="textValue" />
+      <mavon-editor ref="md" v-model="textValue" @imgAdd="$imgAdd" @imgDel="$imgDel" />
     </div>
-    <button class="submit" @click="submit">提交</button>  
+    <button class="submit" @click="submit">提交</button>
   </div>
 </template>
 <script>
 export default {
-  name:'editor',
+  name: 'editor',
   data() {
     return {
       textValue: '',
-      model: '',
+      moudle: '',
       title: '',
       modelOptions: [
         {
@@ -70,9 +70,38 @@ export default {
     }
   },
   methods: {
-    submit(){
-      console.log(this.textValue)
-    }
+    submit() {
+      if (!this.title) {
+        this.$message.error('请输入文章标题')
+        return
+      }
+      if (!this.moudle) {
+        this.$message.error('请选择文章模块')
+        return
+      }
+      if (!this.textValue) {
+        this.$message.error('发布内容不能为空！')
+        return
+      }
+      this.$ajax.post('/saveArticle', {
+        title: this.title,
+        content: this.textValue,
+        module: this.moudle,
+        author: this.$store.state.user.info.name,
+      }).then(res => {
+        console.log(res)
+      })
+    },
+    // 新增图片
+    async $imgAdd(pos,file){
+      let formdata = new FormData()
+      formdata.append('image', file)
+      const data = await this.$ajax.post('/uploadImage',formdata,'noheader') 
+    },
+    // 删除图片
+    $imgDel(file){
+      console.log(file)
+    },
   },
 }
 </script>
@@ -95,17 +124,17 @@ export default {
   width: 800px;
   margin-bottom: 30px;
 }
-.label{
+.label {
   display: inline-block;
   width: 150px;
 }
-.editor-t{
+.editor-t {
   text-align: center;
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 20px;
 }
-.submit{
+.submit {
   width: 120px;
   height: 40px;
   font-size: 16px;
