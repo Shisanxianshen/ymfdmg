@@ -1,5 +1,5 @@
 /*
- * @des: 
+ * @des:
  */
 import VueRouter from "vue-router"
 import Vue from "vue"
@@ -10,13 +10,17 @@ const routes = [
   {
     path: "/editor",
     name: "editor",
-    component: () => import("@/views/editor"),
+    component: () => import(/* webpackChunkName: "editor" */ "@/views/editor"),
   },
   {
     path: "/blog",
     name: "blog",
-    component: () => import("@/views/blog"),
-  }
+    component: () => import(/* webpackChunkName: "blog" */ "@/views/blog"),
+  },
+  {
+    path: "/blog/detail/:id",
+    component: () => import(/* webpackChunkName: "blog" */ "@/views/blog/detail"),
+  },
 ]
 
 // 路由重写

@@ -4,7 +4,6 @@ data:传参
 header:设置请求头
 success:
 */
-console.log(process.env.NODE_ENV)
 import { Message } from "element-ui"
 // const baseUrl =
 //   process.env.NODE_ENV === "development" ? "/api" : "https://39.106.174.56:3011"

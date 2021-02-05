@@ -8,7 +8,7 @@
           v-for="(item, index) in pathList"
           :key="index"
           @click="$router.push(item.path)"
-          :class="{on:item.path === $route.path}"
+          :class="{on: ($route.path.indexOf(item.path) !== -1 && item.path !== '/') || $route.path === item.path}"
           >{{ item.name }}
           </span
         >

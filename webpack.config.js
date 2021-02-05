@@ -9,6 +9,7 @@ module.exports = (env) => {
     output: {
       filename: "[chunkhash].bundle.js",
       path: path.resolve(__dirname, "dist"),
+      publicPath:'/'
     },
     // 配置
     resolve: {

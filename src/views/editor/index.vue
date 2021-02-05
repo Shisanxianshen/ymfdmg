@@ -12,6 +12,12 @@
           <el-input v-model="title" placeholder="请输入文章标题"></el-input>
         </div>
       </template>
+      <template>
+        <div>
+          <span class="label"> 介绍:</span>
+          <el-input v-model="introduce" placeholder="请输入文章介绍"></el-input>
+        </div>
+      </template>
       <!-- 模块 -->
       <template>
         <div>
@@ -41,6 +47,7 @@ export default {
       textValue: '',
       moudle: '',
       title: '',
+      introduce:'',
       modelOptions: [
         {
           value: 'writeCode',
@@ -79,17 +86,23 @@ export default {
         this.$message.error('请选择文章模块')
         return
       }
+      if (!this.introduce) {
+        this.$message.error('文章介绍不能为空！')
+        return
+      }
       if (!this.textValue) {
         this.$message.error('发布内容不能为空！')
         return
       }
+
       this.$ajax.post('/saveArticle', {
         title: this.title,
-        content: this.textValue,
+        content: this.textValue.replace(/'/g,'"'),
         module: this.moudle,
         author: this.$store.state.user.info.name,
+        introduce: this.introduce,
       }).then(res => {
-        console.log(res)
+        if(res.code === 0) this.$message.success('发布成功')
       })
     },
     // 新增图片
@@ -97,10 +110,11 @@ export default {
       let formdata = new FormData()
       formdata.append('image', file)
       const data = await this.$ajax.post('/uploadImage',formdata,'noheader') 
+      this.$refs.md.$img2Url(pos, data.url)
     },
     // 删除图片
-    $imgDel(file){
-      console.log(file)
+    async $imgDel(file){
+      const data = await this.$ajax.post(`/deleteImage`,{url:file[0]})
     },
   },
 }

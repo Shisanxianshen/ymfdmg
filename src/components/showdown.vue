@@ -1,6 +1,7 @@
 // md语法展示
 <template>
-  <div v-html="html"></div>
+  <div v-html="html">
+  </div>
 </template>
 <script>
 export default {
@@ -16,9 +17,12 @@ export default {
       html: '',
     }
   },
-  created() {
-    let converter = new this.showdown.Converter()
-    this.html = converter.makeHtml(this.text)
+  watch:{
+    text(){
+      console.log(this.text)
+      let converter = new this.showdown.Converter()
+      this.html = converter.makeHtml(this.text)
+    }
   },
 }
 </script>
