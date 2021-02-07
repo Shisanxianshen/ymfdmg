@@ -33,33 +33,8 @@ export default {
   }
   pre {
     max-width: 800px;
-    background: #333;
-    padding: 20px;
-    border-radius: 6px;
-    color: #fff;
-    overflow-x: auto;
-    position: relative;
-    .copy {
-      color: #666;
-      right: 5px;
-      top: 5px;
-      position: absolute;
-      cursor: pointer;
-      user-select: none;
-      &:hover {
-        color: skyblue;
-      }
-    }
-    &::-webkit-scrollbar {
-      border-radius: 3px;
-      height: 5px;
-    }
-    &::-webkit-scrollbar-thumb {
-      border-radius: 3px;
-      background: #999;
-    }
-    &::selection {
-      background: #999;
+    code{
+      border-radius: 6px; 
     }
   }
 }

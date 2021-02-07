@@ -8,6 +8,8 @@ import store from "@/store"
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import './utils/element'
+import 'highlight.js/styles/vs2015.css'
+import hl from 'highlight.js'
 Vue.use(mavonEditor)
 Vue.prototype.$ajax = request
 // 代码块指令
@@ -16,6 +18,14 @@ let vm = new Vue({
   router,
   store,
   render: (h) => h(App),
+})
+
+// 自定义一个代码高亮指令
+Vue.directive('highlight', function (el) {
+  const blocks = el.querySelectorAll('pre code')
+  blocks.forEach((block) => {
+    hl.highlightBlock(block)
+  })
 })
 
 Vue.prototype.changeTime = function(str) {

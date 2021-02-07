@@ -1,6 +1,6 @@
 // md语法展示
 <template>
-  <div v-html="html">
+  <div class="code-wrap" v-html="html" v-highlight>
   </div>
 </template>
 <script>
@@ -19,7 +19,6 @@ export default {
   },
   watch:{
     text(){
-      console.log(this.text)
       let converter = new this.showdown.Converter()
       this.html = converter.makeHtml(this.text)
     }
@@ -27,4 +26,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+  .code-wrap{
+    font-size: 16px;
+  }
 </style>

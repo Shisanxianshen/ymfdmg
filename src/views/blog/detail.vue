@@ -34,19 +34,19 @@ export default {
     padding-top: 100px;
     padding-bottom: 50px;
     /deep/h1{
-      font-size: 28px;
+      font-size: 24px;
       font-weight: bold;
       color: #333;
       margin: 20px 0;
     }
     /deep/h2{
-      font-size: 26px;
+      font-size: 22px;
       font-weight: bold;
       color: #333;
       margin: 20px 0;
     }
     /deep/h3{
-      font-size: 24px;
+      font-size: 20px;
       font-weight: bold;
       color: #333;
       margin: 20px 0;

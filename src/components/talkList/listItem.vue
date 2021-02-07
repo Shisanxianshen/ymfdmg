@@ -15,7 +15,7 @@
       <span class="time">{{ changeTime(data.date) }}</span>
     </div>
     <div class="contxt">
-      <p class="text" style="font-size: 14px" v-html="data.content" v-code></p>
+      <p class="text" style="font-size: 14px" v-html="data.content" v-highlight></p>
       <div class="con-footer" :class="{ showStatus: inpShow }">
         <i class="el-icon-chat-square"></i>
         <span @click="inpShow = !inpShow">{{
