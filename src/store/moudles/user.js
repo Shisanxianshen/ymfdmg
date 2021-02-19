@@ -7,7 +7,9 @@ export default {
   },
   mutations: {
     getInfo(state, data) {
-      state.info = data.data
+      if(data.data){
+        state.info = data.data
+      }
     },
     deleInfo(state) {
       state.info = {}

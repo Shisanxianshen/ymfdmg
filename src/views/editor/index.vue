@@ -104,7 +104,7 @@ export default {
 
       this.$ajax.post('/saveArticle', {
         title: this.title,
-        content: this.textValue.replace(/'/g,'"'),
+        content: this.textValue.replace(/'/g,'"').replace(/&/g,encodeURIComponent('&')),
         module: this.moudle,
         author: this.$store.state.user.info.name,
         introduce: this.introduce,
