@@ -8,7 +8,7 @@ import store from "@/store"
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import './utils/element'
-import 'highlight.js/styles/vs2015.css'
+import 'highlight.js/styles/atom-one-dark.css'
 import hl from 'highlight.js'
 Vue.use(mavonEditor)
 Vue.prototype.$ajax = request
