@@ -102,7 +102,7 @@ export default {
         return
       }
       let params = {
-        from: this.discussFrom,
+        from: this.discussFrom === 'detail' ? this.discussFrom + this.$route.params.id: this.discussFrom,
         content: encodeURIComponent(this.content.replace(/'/g,'"')), //对编辑器中所有的单引号做双引号处理
         parentId: 0,
         reviewId: 0,
@@ -117,7 +117,7 @@ export default {
     // 查询评论数据(无需登录)
     async getDiscuss() {
       const data = await this.$ajax.post('/user/discussList', {
-        discussFrom: this.discussFrom,
+        discussFrom: this.discussFrom === 'detail' ? this.discussFrom + this.$route.params.id: this.discussFrom,
       })
       this.discussList = data.data
     },

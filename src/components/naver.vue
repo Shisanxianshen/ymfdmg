@@ -80,9 +80,7 @@ export default {
     return {
       pathList: [
         { name: '首页', path: '/' },
-        { name: '前端园地', path: '/blog' },
-        { name: '面试收集', path: '/question' },
-        { name: '闲谈', path: '/gossip' },
+        { name: '我的博客', path: '/blog' },
         { name: '编辑页', path:'/editor'}
       ],
       showLogin: false,

@@ -1,13 +1,20 @@
 <template>
   <div class="detail">
     <showdown :text="content"/>
+     <!-- 评论区 -->
+    <Discuss /> 
   </div>
 </template>
 <script>
 import showdown from '@/components/showdown'
+import Discuss from '@/components/discuss'
 export default {
   components:{
-    showdown
+    showdown,
+    Discuss
+  },
+  provide: {
+    discussFrom: 'detail',
   },
   data() {
     return {
@@ -19,7 +26,7 @@ export default {
   },
   methods: {
     async getDetail () {
-      const data = await this.$ajax.post(`/getArticleDetail/${this.$route.params.id}`)
+      const data = await this.$ajax.post(`/user/getArticleDetail/${this.$route.params.id}`)
       if(data.code === 0){
         this.content = data.data.content
       }

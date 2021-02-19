@@ -1,7 +1,7 @@
 <template>
   <div :class="{ parent: type === 'parent', child: type === 'child' }">
     <div class="head">
-      <img :src="data.head || defaultImg" alt />
+      <img :src="data.head || defaultImg" class="img" alt />
       <span style="color: #666"
         >{{ data.name
         }}{{
@@ -69,7 +69,7 @@ export default {
     },
     async savediscuss(id) {
       let params = {
-        from: this.discussFrom,
+        from: this.discussFrom === 'detail' ? this.discussFrom + this.$route.params.id: this.discussFrom,
         content: this.text,
         parentId: this.type === 'parent' ? id : this.data.parentId,
         reviewId: id,
@@ -89,7 +89,7 @@ export default {
 .head {
   display: flex;
   align-items: center;
-  img {
+  .img {
     margin-right: 10px;
     width: 30px;
     height: 30px;

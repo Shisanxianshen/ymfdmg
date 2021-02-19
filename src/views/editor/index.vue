@@ -4,7 +4,6 @@
 <template>
   <div style="padding-bottom: 20px">
     <div class="wrap">
-      <h2 class="editor-t">我的文章编辑页</h2>
       <!-- 文章标题 -->
       <template>
         <div>
@@ -73,6 +72,14 @@ export default {
           value: 'webSet',
           label: '网站部署相关',
         },
+        {
+          value: 'interview',
+          label: '面试收集',
+        },
+        {
+          value: 'gossip',
+          label: '闲谈',
+        },
       ],
     }
   },
@@ -128,7 +135,7 @@ export default {
 .wrap {
   width: 1200px;
   margin: 0 auto;
-  padding-top: 60px;
+  padding-top: 100px;
 }
 .el-input {
   width: 800px;
