@@ -114,7 +114,7 @@ export default {
         const formdata = new FormData()
         formdata.append('file', e.target.files[0])
         const data = await this.$ajax.post(
-          `/user/setHead/${this.$store.state.user.info.id}`,
+          `/setHead/${this.$store.state.user.info.id}`,
           formdata,
           'noheader'
         )
