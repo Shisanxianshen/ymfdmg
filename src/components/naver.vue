@@ -122,6 +122,7 @@ export default {
           this.$message.success('上传成功')
           this.$store.dispatch('user/getUserInfo')
           this.headSrc = data.headSrc
+          localStorage.setItem('token',data.token)
         }
       }
     },
